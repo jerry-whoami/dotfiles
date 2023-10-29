@@ -10,8 +10,8 @@ require "core.globals"
 require "core.lazy"
 
 -- Colorscheme
-vim.cmd "colorscheme palenight"
-vim.cmd "colorscheme palenight"
+vim.cmd "colorscheme catppuccin-mocha"
+vim.cmd "colorscheme catppuccin-mocha"
 
 -- Keymaps
 local keymapConfig = require "core.keymaps"
