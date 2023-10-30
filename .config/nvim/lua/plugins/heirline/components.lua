@@ -85,7 +85,7 @@ local ScrollBar = {
     local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
     return string.rep(self.sbar[i], 2)
   end,
-  hl = { fg = utils.get_highlight("TelescopePromptTitle").fg, bg = utils.get_highlight("Normal").bg },
+  hl = { fg = utils.get_highlight("TelescopePromptTitle").bg, bg = utils.get_highlight("Normal").bg },
 }
 
 M.CursorPosition = {
