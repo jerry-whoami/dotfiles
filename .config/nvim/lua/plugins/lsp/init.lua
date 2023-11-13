@@ -1,11 +1,38 @@
-local custom = require("config").lsp
 local utils = require "core.utils"
+
+local servers = {
+  "lua_ls",
+  "jdtls",
+  "pyright",
+  "jsonls",
+  "intelephense",
+  "html",
+  "cssls",
+  "tailwindcss",
+  "tsserver",
+  "emmet_ls",
+  "svelte",
+  "dockerls",
+  "sqlls",
+  "docker_compose_language_service",
+}
+
+local null_ls_sources = {
+  "black",
+  "prettier",
+  "rustywind",
+  "stylua",
+  "tailwindcss-language-server",
+  "black",
+  "blade-formatter",
+}
 
 return {
   -- tools
   {
     "williamboman/mason.nvim",
     opts = {
+      ensure_installed = utils.merge_tables(servers, null_ls_sources),
       ui = {
         icons = {
           package_pending = " ",
@@ -31,12 +58,14 @@ return {
 
   {
     "williamboman/mason-lspconfig.nvim",
+    keys = {
+      { "<leader>lf", "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", desc = "Format" },
+      { "<leader>li", "<cmd>LspInfo<cr>", desc = "Info" },
+      { "<leader>lI", "<cmd>Mason<cr>", desc = "Mason Info" },
+      { "<leader>lR", utils.restartLsp, desc = "Restart Lsp" },
+    },
     event = "BufReadPre",
     dependencies = { "williamboman/mason.nvim" },
-    opts = {
-      ensure_installed = custom.servers,
-      automatic_installation = true,
-    },
   },
 
   -- lsp servers
@@ -48,7 +77,7 @@ return {
       local handlers = require "plugins.lsp.handlers"
       handlers.setup()
 
-      for _, server in pairs(custom.servers) do
+      for _, server in pairs(servers) do
         local opts = {
           on_attach = handlers.on_attach,
           capabilities = handlers.capabilities,
@@ -78,7 +107,7 @@ return {
         debug = false,
         sources = {
           -- formatting
-          -- formatting.blade_formatter,
+          formatting.blade_formatter,
           formatting.stylua,
           formatting.black,
 

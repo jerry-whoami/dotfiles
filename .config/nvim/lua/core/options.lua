@@ -1,9 +1,5 @@
-local config = require "config"
-local zen = require "core.zen-mode"
-local utils = require "core.utils"
-
-local default = {
-  laststatus = 3, -- global statusline
+local options = {
+  laststatus = 0, -- global statusline
   backup = false, -- creates a backup file
   clipboard = "unnamedplus", -- allows neovim to access the system clipboard
   completeopt = { "menu", "menuone", "noselect" }, -- mostly just for cmp
@@ -46,11 +42,7 @@ local default = {
   tabstop = 2, -- insert 2 spaces for a tab
   timeoutlen = 500, -- time to wait for a mapped sequence to complete (in milliseconds)
   wrap = false, -- display lines as one long line, or true to wrap within screen
+  foldcolumn = "6",
 }
-
-local options = utils.merge_tables(default, config.options)
-if config.zen_mode then
-  options = utils.merge_tables(options, zen.opts)
-end
 
 return options

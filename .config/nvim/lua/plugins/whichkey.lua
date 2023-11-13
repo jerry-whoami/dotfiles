@@ -1,8 +1,6 @@
 local utils = require "core.utils"
 
-local custom = require("config").which_key
-
-local default = {
+local options = {
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -57,69 +55,13 @@ local default = {
   },
 }
 
-local neo_tree
-if require("config").neo_tree.floating_window then
-  neo_tree = "<cmd>Neotree toggle float reveal<cr>"
-else
-  neo_tree = "<cmd>Neotree toggle<cr>"
-end
-
 local mappings = {
   [";"] = { "<cmd>Alpha<CR>", "Dashboard" },
-  ["c"] = { "<cmd>edit ~/.config/nvim/lua/config.lua<cr>", "Config" },
-  ["e"] = { neo_tree, "Explorer" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
+  ["W"] = { "<cmd>noautocmd w<cr>", "Save without formatting (noautocmd)" },
   ["q"] = { utils.smart_quit, "Quit" },
   ["x"] = { utils.smart_buffer_close, "Close Buffer" },
   ["L"] = { "<cmd>Lazy<cr>", "Open Lazy Manager" },
-  f = {
-    name = "Find",
-    c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-    p = {
-      "<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>",
-      "Colorscheme with Preview",
-    },
-    f = { "<cmd>Telescope find_files<cr>", "Find Files" },
-    a = { "<cmd>Telescope find_files hidden=true no_ignore=true<cr>", "Find All" },
-    w = { "<cmd>Telescope live_grep<cr>", "Find Text" },
-    l = { "<cmd>Telescope resume<cr>", "Last Search" },
-    r = { "<cmd>Telescope oldfiles hidden=true no_ignore=true<cr>", "Recent File" },
-    k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-    C = { "<cmd>Telescope commands<cr>", "Commands" },
-    h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
-  },
-  l = {
-    name = "LSP",
-    d = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
-    f = { "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", "Format" },
-    i = { "<cmd>LspInfo<cr>", "Info" },
-    I = { "<cmd>Mason<cr>", "Mason Info" },
-    H = { "<cmd>IlluminationToggle<cr>", "Toggle Doc Higlighting" },
-    l = { vim.lsp.codelens.run, "CodeLens Action" },
-    q = { vim.diagnostic.setloclist, "Quickfix" },
-    s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-    R = { utils.restartLsp, "Restart Lsp" },
-  },
-  b = {
-    name = "Buffers",
-    s = { "<cmd>BufferLinePick<cr>", "Jump" },
-    f = { "<cmd>Telescope buffers<cr>", "Find" },
-    b = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
-    n = { "<cmd>BufferLineCycleNext<cr>", "Next" },
-    W = { "<cmd>noautocmd w<cr>", "Save without formatting (noautocmd)" },
-    e = { "<cmd>BufferLinePickClose<cr>", "Pick which buffer to close" },
-    h = { "<cmd>BufferLineCloseLeft<cr>", "Close all to the left" },
-    l = { "<cmd>BufferLineCloseRight<cr>", "Close all to the right" },
-    D = { "<cmd>BufferLineSortByDirectory<cr>", "Sort by directory" },
-    L = { "<cmd>BufferLineSortByExtension<cr>", "Sort by language" },
-  },
-  s = {
-    name = "Splits",
-    v = { "<cmd>vsplit<cr>", "Split Vertically" },
-    h = { "<cmd>split<cr>", "Split Horizontally" },
-    x = { "<cmd>close<cr>", "Close Splits" },
-    e = { "<C-w>=", "Reset Splits" },
-  },
   n = {
     name = "Notifications",
     d = { "<cmd>lua require('notify').dismiss({ silent = true, pending = true })<cr>", "Delete all Notifications" },
@@ -136,11 +78,10 @@ local opts = {
   nowait = true, -- use `nowait` when creating keymaps
 }
 
-local options = utils.merge_tables(default, custom)
-
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
+  enabled = false,
   config = function()
     local status, which_key = pcall(require, "which-key")
     if not status then

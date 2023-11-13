@@ -1,5 +1,9 @@
-local custom = require("config").lsp
 local utils = require "core.utils"
+local servers_with_formatting_capabilities = {
+  "intelephense",
+  "jdtls",
+  "svelte",
+}
 
 local M = {}
 
@@ -11,7 +15,7 @@ M.setup = function()
     { name = "DiagnosticSignInfo", text = "" },
   }
 
-  local default = {
+  local options = {
     virtual_text = false,
     signs = {
       active = signs,
@@ -27,8 +31,6 @@ M.setup = function()
       prefix = "",
     },
   }
-
-  local options = utils.merge_tables(default, custom.options)
 
   vim.diagnostic.config(options)
 
@@ -73,14 +75,10 @@ M.on_attach = function(client, bufnr)
   client.server_capabilities.documentFormattingProvider = false
   client.server_capabilities.documentRangeFormattingProvider = false
 
-  if utils.contains(client.name, custom.servers_with_formatting_capabilities) then
+  if utils.contains(client.name, servers_with_formatting_capabilities) then
     client.server_capabilities.documentFormattingProvider = true
     client.server_capabilities.documentRangeFormattingProvider = true
     utils.formatOnSave(client, bufnr)
-  end
-
-  if client.name == "clangd" then
-    client.server_capabilities.offsetEncoding = { "utf-8", "utf-16" }
   end
 
   setLspKeymaps()

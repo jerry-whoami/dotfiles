@@ -2,7 +2,7 @@ return {
   leader_key = " ",
   colorscheme = "palenight",
   include_hyphen_in_word = true,
-  plugin_development_dir = "~/Dev/NvimPlugins",
+  plugin_development_dir = "/Dev/NvimPlugins",
   zen_mode = true,
 
   disabled_plugins = {

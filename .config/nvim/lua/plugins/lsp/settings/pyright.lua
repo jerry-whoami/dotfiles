@@ -1,11 +1,11 @@
 return {
-	settings = {
+  settings = {
+    filetypes = { "python" },
 
     python = {
       analysis = {
-        typeCheckingMode = "off"
-      }
-    }
-	},
+        typeCheckingMode = "off",
+      },
+    },
+  },
 }
-

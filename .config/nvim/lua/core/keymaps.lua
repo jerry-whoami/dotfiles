@@ -1,3 +1,5 @@
+local utils = require "core.utils"
+
 local M = {}
 
 -- Modes
@@ -44,6 +46,21 @@ M.keymaps = {
 
     -- Substitute the every ocurrence of the word your on
     ["<leader>S"] = ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
+
+    -- save and quit file
+    ["<leader>w"] = "<cmd>w!<CR>",
+    ["<leader>W"] = "<cmd>noautocmd w<cr>",
+    ["<leader>q"] = utils.smart_quit,
+    ["<leader>x"] = utils.smart_buffer_close,
+
+    -- Lazy
+    ["<leader>L"] = "<cmd>Lazy<cr>",
+
+    -- Manage splits
+    ["<leader>sv"] = "<cmd>vsplit<cr>",
+    ["<leader>sh"] = "<cmd>split<cr>",
+    ["<leader>sx"] = "<cmd>close<cr>",
+    ["<leader>se"] = "<C-w>=",
   },
   i = {
     -- Save like a normal IDE
@@ -52,16 +69,8 @@ M.keymaps = {
     -- Vertical Navigation
     ["<C-d>"] = "<C-d>zz",
     ["<C-u>"] = "<C-u>zz",
-
-    -- Move text up and down
-    ["<A-k>"] = "<Esc><cmd>m .-2<CR>==gi",
-    ["<A-j>"] = "<Esc><cmd>m .+1<CR>==gi",
   },
   v = {
-    -- Move text up and down
-    ["<A-j>"] = ":move '>+1<CR>gv=gv",
-    ["<A-k>"] = ":move '<-2<CR>gv=gv",
-
     -- Stay in indent mode after adding or removing tabs
     ["<"] = "<gv",
     [">"] = ">gv",
@@ -70,9 +79,6 @@ M.keymaps = {
     ["p"] = '"_dP',
   },
   t = {
-    -- Toggle Terminal
-    ["<C-\\>"] = "<cmd>lua require('nvterm.terminal').toggle('horizontal') <cr>",
-
     -- Resize Windows
     ["<C-Up>"] = "<cmd>resize +2<CR>",
     ["<C-Down>"] = "<cmd>resize -2<CR>",

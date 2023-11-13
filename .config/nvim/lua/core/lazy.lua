@@ -12,7 +12,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local config = require "config"
 local status, lazy = pcall(require, "lazy")
 if not status then
   return
@@ -23,11 +22,9 @@ lazy.setup {
     { import = "plugins" },
   },
   defaults = { lazy = true },
-  install = {
-    colorscheme = { "palenight" },
-  },
+  install = {},
   dev = {
-    path = config.plugin_development_dir,
+    path = "~/Dev/NvimPlugins",
     patterns = { "palenight.nvim" },
   },
   checker = { enabled = true },

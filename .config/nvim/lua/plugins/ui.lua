@@ -1,10 +1,16 @@
-local config = require "config"
-
 return {
   -- Better ui for notifications
   {
     "rcarriga/nvim-notify",
     event = "VeryLazy",
+    keys = {
+      d = {
+        "<leader>nd",
+        "<cmd>lua require('notify').dismiss({ silent = true, desc = pending = true })<cr>",
+        "Delete all Notifications",
+      },
+      h = { "<leader>nh", "<cmd>Telescope notify<cr>", desc = "History" },
+    },
     opts = {
       timeout = 3000,
       level = 2,

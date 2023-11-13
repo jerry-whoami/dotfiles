@@ -76,25 +76,20 @@ return {
             select = false,
           },
           ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
+            if luasnip.jumpable() then
               vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
             else
               fallback()
             end
           end, { "i", "s" }),
           ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.expand_or_jumpable(-1) then
+            if luasnip.jumpable(-1) then
               vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
             else
               fallback()
             end
           end, { "i", "s" }),
           ["<Esc>"] = cmp.mapping(function(fallback)
-            local luasnip = require "luasnip"
             if luasnip.get_active_snip() then
               luasnip.unlink_current()
             end

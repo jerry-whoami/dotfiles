@@ -1,14 +1,6 @@
 return {
   {
-    "nvim-treesitter/nvim-treesitter-context",
-    event = "BufReadPre",
-    enabled = true,
-    opts = { mode = "cursor" },
-  },
-
-  {
     "nvim-treesitter/nvim-treesitter",
-    -- enabled = false,
     dependencies = {
       "p00f/nvim-ts-rainbow",
       "windwp/nvim-ts-autotag",

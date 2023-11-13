@@ -1,13 +1,16 @@
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 P = function(v)
-	vim.notify(vim.inspect(v))
-	return v
+  vim.notify(vim.inspect(v))
+  return v
 end
 
 RELOAD = function(...)
-	return require("plenary.reload").reload_module(...)
+  return require("plenary.reload").reload_module(...)
 end
 
 R = function(name)
-	RELOAD(name)
-	return require(name)
+  RELOAD(name)
+  return require(name)
 end
