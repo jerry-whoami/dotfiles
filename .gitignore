@@ -1,0 +1,11 @@
+*
+!.config/
+!.config/starship.toml
+!.config/nvim/
+!.config/nvim/**/*
+!.config/tmux/
+!.config/tmux/**/*
+!.config/kitty/
+!.config/kitty/**/*
+!.zshrc
+!.gitignore
