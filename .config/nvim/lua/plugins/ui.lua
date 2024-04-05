@@ -53,6 +53,12 @@ return {
 			extra_groups = {
 				"NormalFloat",
 				"NeoTreeNormal",
+				"NeoTreeNormalNC",
+				"NeoTreeNormalTabActive",
+				"TabLineFill",
+				"WinSeparator",
+				"VertSplit",
+				"LineNr",
 				"TelescopeNormal",
 				"TelescopeBorder",
 			},
