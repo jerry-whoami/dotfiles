@@ -31,7 +31,7 @@ end
 vim.opt.shortmess:append("c") -- don't show redundant messages from ins-completion-menu
 vim.opt.whichwrap:append("<,>,[,],h,l") -- for line wrapping
 vim.opt.iskeyword:append("-") -- Include - as part of a word
-vim.opt.fillchars:append("vert: ") -- Include - as part of a word
+vim.opt.fillchars:append("vert: ") -- Set vertical split as a space
 
 -- Disable providers
 vim.g.loaded_python3_provider = 0
