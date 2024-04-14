@@ -1,5 +1,5 @@
 format = """
-$custom\
+$python\
 $username\
 $hostname\
 $directory\
@@ -146,6 +146,7 @@ symbol = " "
 
 [python]
 symbol = " "
+format = "($virtualenv) "
 
 [rlang]
 symbol = "󰟔 "
