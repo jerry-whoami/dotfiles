@@ -67,6 +67,8 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 alias ls='ls --color'
+alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+alias artisan='php artisan'
 
 # Shell integrations
 eval "$(fzf --zsh)"
