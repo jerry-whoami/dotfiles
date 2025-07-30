@@ -20,6 +20,10 @@ return {
         nerd_font_variant = "mono",
       },
 
+      fuzzy = {
+        implementation = "lua",
+      },
+
       completion = {
         accept = {
           -- experimental auto-brackets support
@@ -50,8 +54,9 @@ return {
         -- with blink.compat
         compat = {},
         default = { "lsp", "path", "snippets", "buffer" },
-        cmdline = {},
       },
+
+      cmdline = {},
 
       keymap = {
         preset = "enter",

@@ -9,16 +9,16 @@ return {
         return {
           WinSeparator = { fg = colors.base },
           AlphaLogo = { fg = colors.lavender },
-          NeoTreeNormal = { bg = colors.base },
-          NeoTreeNormalNC = { bg = colors.base },
+          NeoTreeNormal = { bg = "none" },
+          NeoTreeNormalNC = { bg = "none" },
           NeoTreeDirectoryName = { fg = colors.text },
           NeoTreeFileName = { fg = colors.text },
-          NormalFloat = { bg = colors.base },
+          NeoTreeCursorLine = { fg = colors.rosewater },
+          NormalFloat = { bg = "none" },
           FloatBorder = { fg = colors.lavender },
-          StatusLine = { bg = colors.base },
-          StatusLineNC = { bg = colors.base },
-
-          BlinkCmpMenu = { fg = colors.base },
+          StatusLine = { bg = "none" },
+          StatusLineNC = { bg = "none" },
+          BlinkCmpMenu = { bg = "none" },
         }
       end,
       integrations = {

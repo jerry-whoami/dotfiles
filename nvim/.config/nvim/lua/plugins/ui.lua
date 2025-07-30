@@ -9,6 +9,14 @@ return {
   },
 
   {
+    "xiyaowong/transparent.nvim",
+    lazy = false,
+    opts = {
+      extra_groups = { "PMenu" },
+    },
+  },
+
+  {
     "folke/noice.nvim",
     opts = {
       views = {
@@ -74,7 +82,7 @@ return {
             { provider = "" },
           },
           {
-            hl = { bg = "base" },
+            -- hl = { bg = "base" },
             utils.surround({ "█", "█" }, "crust", {
               {
                 provider = function()

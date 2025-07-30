@@ -10,18 +10,8 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-if [[ $- == *i* ]]; then 
-    # This is a good place to load graphic/ascii art, display system informat    ion, etc. 
-    if command -v pokego >/dev/null; then 
-        pokego --no-title -r 1,3,6 
-    elif command -v pokemon-colorscripts >/dev/null; then 
-        pokemon-colorscripts --no-title -r 1,3,6 
-    elif command -v fastfetch >/dev/null; then 
-        if do_render "image"; then 
-            fastfetch --logo-type kitty 
-        fi 
-    fi 
-fi 
+# Load intro
+fastfetch --logo-type kitty
 
 # Starship
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
@@ -86,3 +76,7 @@ alias artisan='php artisan'
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
